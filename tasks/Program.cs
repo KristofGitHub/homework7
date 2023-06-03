@@ -5,6 +5,8 @@ m = 3, n = 4.
 1 -3,3 8 -9,9
 8 7,8 -7,1 9
 
+Console.WriteLine("");
+Console.WriteLine("            *   *   *");
 Console.WriteLine("TASK # 1");
 Console.WriteLine("");
 Console.WriteLine("Input number of rows: ");
@@ -51,6 +53,9 @@ void Print2DArray(double[,] array)
 8 4 2 4
 17 -> такого числа в массиве нет
 */
+/*
+Console.WriteLine("");
+Console.WriteLine("            *   *   *");
 Console.WriteLine("TASK # 2");
 Console.WriteLine("");
 Console.WriteLine("Input number of rows: ");
@@ -104,6 +109,7 @@ void FindElement(int[,] array, int rowFE, int columnFE)
     }
     else Console.WriteLine("This element does not exist in your array");
 }
+*/
 
 /*
 Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
@@ -114,50 +120,28 @@ void FindElement(int[,] array, int rowFE, int columnFE)
 Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 */
 
-
-
-
-
-
-
-/*
-
+Console.WriteLine("");
 Console.WriteLine("            *   *   *");
-Console.WriteLine("CREATING AND PRINTING 2D-ARRAYS CODE");
+Console.WriteLine("TASK # 3");
 Console.WriteLine("");
 Console.WriteLine("Input number of rows: ");
 int rows = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Input number of columnss: ");
 int columns = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Input number of minValue: ");
-int minValue = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Input number of maxValue: ");
-int maxValue = Convert.ToInt32(Console.ReadLine());
 
-int[,] myArray = Create2DMatrix(rows, columns, minValue, maxValue);
+int[,] myArray = Create2DMatrix(rows, columns);
 Print2DArray(myArray);
 Console.WriteLine();
-Console.WriteLine($"Summary of elements in main diagonal is {SumElementMainDiag(myArray)}");
+Console.WriteLine($"Arithmetic mean of every columns is: ");
 Console.WriteLine();
-int[,] myNewArray = CreateMy2DMatrix(rows, columns);
-Console.WriteLine();
-Console.WriteLine("My new array: ");
-Print2DArray(myNewArray);
-Console.WriteLine();
-int[,] myModifyArray = ModifyMy2DMatrix(myNewArray);
-Console.WriteLine("My modified array: ");
-Print2DArray(myModifyArray);
+ArithmeticMeanCol(myArray);
 
-
-int[,] Create2DMatrix (int rows, int columns, int minValue, int maxValue)
+int[,] Create2DMatrix (int rows, int columns)
 {
     int[,] array = new int[rows, columns];
     for(int i = 0; i < rows; i++)
     {
-        for(int j = 0; j < columns; j++)
-        {
-            array[i, j] = new Random().Next(minValue, maxValue);
-        }
+        for(int j = 0; j < columns; j++) array[i, j] = new Random().Next(0, 10);
     }
     return array;
 }
@@ -167,49 +151,20 @@ void Print2DArray(int[,] array)
     Console.WriteLine("Yours array: ");
     for(int i = 0; i < array.GetLength(0); i++)
     {
-        for(int j = 0; j < array.GetLength(1); j++)
-        {
-            Console.Write(array[i, j] + " ");
-        }
+        for(int j = 0; j < array.GetLength(1); j++) Console.Write(array[i, j] + " ");
         Console.WriteLine();
     }
 }
 
-int SumElementMainDiag(int[,] array)
+void ArithmeticMeanCol(int[,] array)
 {
-    int sum = 0;
-    for(int i = 0; i < array.GetLength(0); i++)
+    double sum = 0;
+    double rows = array.GetLength(0);
+    for(int j = 0; j < array.GetLength(1); j++)
     {
-        for(int j = 0; j < array.GetLength(1); j++)
-        {
-            if(i==j) sum += array[i,j];
-        }
+        for(int i = 0; i < array.GetLength(0); i++) sum += (array[i,j])/(rows);
+        Console.Write($"Column {j} - {sum}; ");
+        sum = 0;
     }
-    return sum;
+    Console.WriteLine();
 }
-
-int[,] CreateMy2DMatrix (int rows, int columns)
-{
-    int[,] array = new int[rows, columns];
-    for(int i = 0; i < rows; i++)
-    {
-        for(int j = 0; j < columns; j++)
-        {
-            array[i, j] = i + j;
-        }
-    }
-    return array;
-}
-
-int[,] ModifyMy2DMatrix (int[,] array)
-{
-    for(int i = 0; i < rows; i++)
-    {
-        for(int j = 0; j < columns; j++)
-        {
-            if ((i%2 == 1) && (j%2 == 1)) array[i, j] = array[i, j] * array[i, j];
-        }
-    }
-    return array;
-}
- */
